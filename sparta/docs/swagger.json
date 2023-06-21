@@ -1,0 +1,10 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "An Open Source Software Apply and Manager System",
+        "title": "Open Source Software Manager",
+        "contact": {},
+        "version": "1.0.0"
+    },
+    "paths": {}
+}

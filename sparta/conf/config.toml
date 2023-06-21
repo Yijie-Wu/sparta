@@ -2,3 +2,8 @@
 server = "127.0.0.1"
 port = "8000"
 
+[mysql]
+mysql_server = ""
+mysql_port = ""
+mysql_username = ""
+mysql_password = ""
