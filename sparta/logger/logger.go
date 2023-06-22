@@ -33,8 +33,7 @@ func getEncoder() zapcore.Encoder {
 }
 
 func getWriteSyncer() zapcore.WriteSyncer {
-	stRootDir, _ := os.Getwd()
-	stLogFilePath := filepath.Join(stRootDir, "log", time.Now().Format(time.DateOnly)+".txt")
+	stLogFilePath := filepath.Join(viper.GetString("log.Path"), time.Now().Format(time.DateOnly)+".txt")
 	luberJackSyncer := &lumberjack.Logger{
 		Filename:   stLogFilePath,
 		MaxSize:    viper.GetInt("log.MaxSize"),

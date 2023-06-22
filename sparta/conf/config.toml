@@ -15,8 +15,9 @@ MaxIdleConn = 100  # 最多空闲连接数
 MaxOpenConn = 100  # 最多打开连接数
 
 [log]
+Path = "/Users/wuyijie/Desktop"
 MaxAge = 30
-MaxSize = 100
+MaxSize = 10
 MaxBackups = 3
 LocalTime = true
 Compress = true

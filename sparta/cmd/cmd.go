@@ -25,7 +25,6 @@ func StartApplication() {
 	if err != nil {
 		initErr = utils.AppendError(initErr, err)
 	}
-
 	global.RedisClient = redisClient
 
 	if initErr != nil {
