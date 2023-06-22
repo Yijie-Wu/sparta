@@ -28,3 +28,7 @@ Addr = "localhost:6379"
 Username = ""
 Password = ""
 
+[jwt]
+TokenExpire = 30
+SigningKey = "oss"
+
