@@ -6,10 +6,13 @@ port = "8000"
 development = true
 
 [mysql]
-mysql_port = ""
-mysql_server = ""
-mysql_username = ""
-mysql_password = ""
+name = "oss"
+port = "3306"
+server = "127.0.0.1"
+username = "root"
+password = "rootkeys"
+MaxIdleConn = 100  # 最多空闲连接数
+MaxOpenConn = 100  # 最多打开连接数
 
 [log]
 MaxAge = 30
@@ -17,3 +20,10 @@ MaxSize = 100
 MaxBackups = 3
 LocalTime = true
 Compress = true
+
+[redis]
+DB = 0
+Addr = "localhost:6379"
+Username = ""
+Password = ""
+
