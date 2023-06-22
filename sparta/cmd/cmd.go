@@ -1,17 +1,18 @@
 package cmd
 
 import (
-	"fmt"
 	"sparta/conf"
+	"sparta/global"
 	"sparta/router"
 )
 
 func StartApplication() {
-	fmt.Println("Start app")
 	conf.InitConfig()
+	global.Logger = conf.InitLogger()
 	router.InitRouters()
+	global.Logger.Info("Start app success")
 }
 
 func StopApplication() {
-	fmt.Println("Stop app")
+	global.Logger.Info("Stop app success")
 }

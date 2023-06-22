@@ -1,9 +1,19 @@
 [app]
-server = "127.0.0.1"
+server = ""
 port = "8000"
 
+[mode]
+development = true
+
 [mysql]
-mysql_server = ""
 mysql_port = ""
+mysql_server = ""
 mysql_username = ""
 mysql_password = ""
+
+[log]
+MaxAge = 30
+MaxSize = 100
+MaxBackups = 3
+LocalTime = true
+Compress = true

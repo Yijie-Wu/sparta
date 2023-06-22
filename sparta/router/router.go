@@ -10,6 +10,7 @@ import (
 	"net/http"
 	"os/signal"
 	_ "sparta/docs"
+	"sparta/global"
 	"syscall"
 	"time"
 )
@@ -59,8 +60,9 @@ func InitRouters() {
 	}
 	// 在协程中启动web服务
 	go func() {
+		global.Logger.Infof("Start sever at: [%s:%s]", server, port)
 		if err := app.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			fmt.Println(fmt.Sprintf("Start server failed at:%s", err.Error()))
+			global.Logger.Errorf("Start server failed at:%s", err.Error())
 			return
 		}
 	}()
@@ -71,10 +73,10 @@ func InitRouters() {
 	defer cancelShutdown()
 
 	if err := app.Shutdown(ctx); err != nil {
-		fmt.Println(fmt.Sprintf("Stop server failed at:%s", err.Error()))
+		global.Logger.Errorf("Stop server failed at:%s", err.Error())
 		return
 	}
-	fmt.Println("Stop server success")
+	global.Logger.Info("Stop server success")
 }
 
 func InitBasePlatformRoutes() {

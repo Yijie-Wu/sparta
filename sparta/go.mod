@@ -48,6 +48,9 @@ require (
 	github.com/ugorji/go/codec v1.2.11 // indirect
 	github.com/urfave/cli/v2 v2.25.7 // indirect
 	github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 // indirect
+	go.uber.org/atomic v1.11.0 // indirect
+	go.uber.org/multierr v1.11.0 // indirect
+	go.uber.org/zap v1.24.0 // indirect
 	golang.org/x/arch v0.3.0 // indirect
 	golang.org/x/crypto v0.10.0 // indirect
 	golang.org/x/net v0.11.0 // indirect
@@ -56,6 +59,7 @@ require (
 	golang.org/x/tools v0.10.0 // indirect
 	google.golang.org/protobuf v1.30.0 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
+	gopkg.in/natefinch/lumberjack.v2 v2.2.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	sigs.k8s.io/yaml v1.3.0 // indirect
