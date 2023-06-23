@@ -4,6 +4,8 @@ import (
 	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
+	"github.com/go-playground/validator/v10"
 	"github.com/spf13/viper"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -11,6 +13,7 @@ import (
 	"os/signal"
 	_ "sparta/docs"
 	"sparta/global"
+	"strings"
 	"syscall"
 	"time"
 )
@@ -36,10 +39,25 @@ func InitRouters() {
 	defer cancelCtx()
 
 	r := gin.Default()
-	rgPublic := r.Group("/api/v1/public")
-	rgAuth := r.Group("/api/v1")
+	authApiPrefix := viper.GetString("app.authApiPrefix")
+	publicApiPrefix := viper.GetString("app.publicApiPrefix")
 
-	InitBasePlatformRoutes()
+	if authApiPrefix == "" {
+		authApiPrefix = "/api/v1"
+	}
+
+	if publicApiPrefix == "" {
+		publicApiPrefix = "/api/v1/public"
+	}
+
+	rgPublic := r.Group(publicApiPrefix)
+	rgAuth := r.Group(authApiPrefix)
+
+	// 初始化基础平台路由
+	initBasePlatformRoutes()
+
+	// 注册自定义校验器
+	registerCustomValidator()
 
 	for _, fnRegisterRoute := range gfnRoutes {
 		fnRegisterRoute(rgPublic, rgAuth)
@@ -79,6 +97,22 @@ func InitRouters() {
 	global.Logger.Info("Stop server success")
 }
 
-func InitBasePlatformRoutes() {
+func initBasePlatformRoutes() {
 	InitUserRoutes()
+}
+
+// 注册自定义验证器
+func registerCustomValidator() {
+	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
+		if err := v.RegisterValidation("my_validator", func(fl validator.FieldLevel) bool {
+			if value, ok := fl.Field().Interface().(string); ok {
+				if value != "" && 0 == strings.Index(value, "a") {
+					return true
+				}
+			}
+			return false
+		}); err != nil {
+			return
+		}
+	}
 }
