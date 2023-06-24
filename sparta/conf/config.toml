@@ -34,3 +34,7 @@ Password = ""
 TokenExpire = 30
 SigningKey = "oss"
 
+[ansible]
+username = "wuyijie"
+password = "wyjchp1314!"
+shutdownArgs = "poweroff"

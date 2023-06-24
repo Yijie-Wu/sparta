@@ -16,6 +16,44 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/api/v1/host/shutdown": {
+            "post": {
+                "description": "关闭指定主机",
+                "tags": [
+                    "主机管理"
+                ],
+                "summary": "关闭主机",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "\t主机ip",
+                        "name": "hostIP",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "登陆成功",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "401": {
+                        "description": "认证失败",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "403": {
+                        "description": "权限不足",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/public/user/login": {
             "post": {
                 "description": "登陆系统",

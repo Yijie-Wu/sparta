@@ -4,6 +4,31 @@ info:
   title: Open Source Software Manager
   version: 1.0.0
 paths:
+  /api/v1/host/shutdown:
+    post:
+      description: 关闭指定主机
+      parameters:
+      - description: "\t主机ip"
+        in: formData
+        name: hostIP
+        required: true
+        type: string
+      responses:
+        "200":
+          description: 登陆成功
+          schema:
+            type: string
+        "401":
+          description: 认证失败
+          schema:
+            type: string
+        "403":
+          description: 权限不足
+          schema:
+            type: string
+      summary: 关闭主机
+      tags:
+      - 主机管理
   /api/v1/public/user/login:
     post:
       description: 登陆系统
