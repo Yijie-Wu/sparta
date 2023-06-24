@@ -2,7 +2,6 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"net/http"
 	"sparta/api"
 )
 
@@ -24,20 +23,11 @@ func InitUserRoutes() {
 		rgAuthUser := rgAuth.Group("user") // 创建user子组
 
 		{
-			rgAuthUser.GET("", func(ctx *gin.Context) {
-				ctx.AbortWithStatusJSON(http.StatusOK, gin.H{
-					"data": []map[string]any{
-						{"id": 1, "name": "yijie"},
-						{"id": 2, "name": "hongping"},
-					},
-				})
-			})
-			rgAuthUser.GET("/:id", func(ctx *gin.Context) {
-				ctx.AbortWithStatusJSON(http.StatusOK, gin.H{
-					"id":   1,
-					"name": "yijie",
-				})
-			})
+			rgAuthUser.POST("", userAPI.AddUser)
+			rgAuthUser.GET("/:id", userAPI.GetUserByID)
+			rgAuthUser.PUT("/:id", userAPI.UpdateUser)
+			rgAuthUser.DELETE("/:id", userAPI.DeleteUserByID)
+			rgAuthUser.POST("/list", userAPI.GetUserList)
 		}
 	})
 }

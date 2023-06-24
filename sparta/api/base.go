@@ -18,9 +18,10 @@ type BaseAPI struct {
 }
 
 type BuildRequestOption struct {
-	Ctx               *gin.Context
-	DTO               any
-	BindParamsFromURI bool
+	Ctx     *gin.Context
+	DTO     any
+	BindURI bool
+	BindAll bool
 }
 
 func NewBaseAPI() BaseAPI {
@@ -44,10 +45,12 @@ func (a *BaseAPI) BuildRequest(option BuildRequestOption) *BaseAPI {
 	a.Ctx = option.Ctx
 	// 绑定请求数据
 	if option.DTO != nil {
-		if option.BindParamsFromURI {
-			errResult = a.Ctx.ShouldBindUri(option.DTO)
-		} else {
-			errResult = a.Ctx.ShouldBind(option.DTO)
+		if option.BindAll || option.BindURI {
+			errResult = utils.AppendError(errResult, a.Ctx.ShouldBindUri(option.DTO))
+		}
+
+		if option.BindAll || !option.BindURI {
+			errResult = utils.AppendError(errResult, a.Ctx.ShouldBind(option.DTO))
 		}
 	}
 

@@ -11,6 +11,7 @@ type ResponseJson struct {
 	Code   int    `json:"code,omitempty"`
 	Msg    string `json:"msg,omitempty"`
 	Data   any    `json:"data,omitempty"`
+	Total  int64  `json:"total,omitempty"`
 }
 
 func (m ResponseJson) IsEmpty() bool {
@@ -18,7 +19,7 @@ func (m ResponseJson) IsEmpty() bool {
 }
 
 func buildStatus(resp ResponseJson, nDefaultStatus int) int {
-	if 0 == nDefaultStatus {
+	if nDefaultStatus != 0 {
 		return nDefaultStatus
 	}
 	return resp.Status

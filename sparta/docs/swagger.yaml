@@ -52,7 +52,191 @@ paths:
           description: 登陆失败
           schema:
             type: string
+        "500":
+          description: 服务端错误
+          schema:
+            type: string
       summary: 用户登陆
+      tags:
+      - 用户管理
+  /api/v1/user:
+    post:
+      description: 添加用户
+      parameters:
+      - description: NT
+        in: formData
+        name: nt
+        required: true
+        type: string
+      - description: 用户名
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: 邮箱地址
+        in: formData
+        name: email
+        required: true
+        type: string
+      - description: 密码
+        in: formData
+        name: password
+        required: true
+        type: string
+      - description: 头像
+        in: formData
+        name: file
+        required: true
+        type: file
+      responses:
+        "201":
+          description: 添加成功
+          schema:
+            type: string
+        "401":
+          description: 没有登陆
+          schema:
+            type: string
+        "403":
+          description: 权限不足
+          schema:
+            type: string
+        "500":
+          description: 服务端错误
+          schema:
+            type: string
+      summary: 添加用户
+      tags:
+      - 用户管理
+  /api/v1/user/{id}:
+    delete:
+      description: 删除用户
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: 删除成功
+          schema:
+            type: string
+        "401":
+          description: 没有登陆
+          schema:
+            type: string
+        "403":
+          description: 权限不足
+          schema:
+            type: string
+        "500":
+          description: 服务端错误
+          schema:
+            type: string
+      summary: 删除用户
+      tags:
+      - 用户管理
+    get:
+      description: 获取用户
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: 获取成功
+          schema:
+            type: string
+        "401":
+          description: 没有登陆
+          schema:
+            type: string
+        "403":
+          description: 权限不足
+          schema:
+            type: string
+        "500":
+          description: 服务端错误
+          schema:
+            type: string
+      summary: 获取用户
+      tags:
+      - 用户管理
+    put:
+      description: 更新用户
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: NT
+        in: formData
+        name: nt
+        type: string
+      - description: 用户名
+        in: formData
+        name: name
+        type: string
+      - description: 邮箱地址
+        in: formData
+        name: email
+        type: string
+      responses:
+        "200":
+          description: 更新成功
+          schema:
+            type: string
+        "401":
+          description: 没有登陆
+          schema:
+            type: string
+        "403":
+          description: 权限不足
+          schema:
+            type: string
+        "500":
+          description: 服务端错误
+          schema:
+            type: string
+      summary: 更新用户
+      tags:
+      - 用户管理
+  /api/v1/user/list:
+    post:
+      description: 获取用户列表
+      parameters:
+      - description: Page
+        in: formData
+        name: page
+        required: true
+        type: integer
+      - description: Limit
+        in: formData
+        name: limit
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: 获取成功
+          schema:
+            type: string
+        "401":
+          description: 没有登陆
+          schema:
+            type: string
+        "403":
+          description: 权限不足
+          schema:
+            type: string
+        "500":
+          description: 服务端错误
+          schema:
+            type: string
+      summary: 获取用户列表
       tags:
       - 用户管理
 swagger: "2.0"

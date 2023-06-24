@@ -38,3 +38,6 @@ SigningKey = "oss"
 username = "wuyijie"
 password = "wyjchp1314!"
 shutdownArgs = "poweroff"
+
+[page]
+usersLimit = 10
