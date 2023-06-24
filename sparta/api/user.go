@@ -2,16 +2,20 @@ package api
 
 import (
 	"github.com/gin-gonic/gin"
+	"sparta/service"
 	"sparta/service/dto"
+	"sparta/utils"
 )
 
 type UserAPI struct {
 	BaseAPI
+	Service *service.UserService
 }
 
 func NewUserAPI() UserAPI {
 	return UserAPI{
 		BaseAPI: NewBaseAPI(),
+		Service: service.NewUserService(),
 	}
 }
 
@@ -30,7 +34,20 @@ func (u UserAPI) Login(ctx *gin.Context) {
 		return
 	}
 
+	iUser, err := u.Service.Login(iUserLoginDTO)
+	if err != nil {
+		u.ClientFail(ResponseJson{
+			Msg: err.Error(),
+		})
+		return
+	}
+
+	token, _ := utils.GenerateToken(iUser.ID, iUser.NT)
+
 	u.OK(ResponseJson{
-		Data: iUserLoginDTO,
+		Data: gin.H{
+			"token": token,
+			"user":  iUser,
+		},
 	})
 }

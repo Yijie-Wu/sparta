@@ -13,6 +13,7 @@ import (
 	"os/signal"
 	_ "sparta/docs"
 	"sparta/global"
+	"sparta/middleware"
 	"strings"
 	"syscall"
 	"time"
@@ -39,6 +40,11 @@ func InitRouters() {
 	defer cancelCtx()
 
 	r := gin.Default()
+
+	// 加载cors中间件
+	r.Use(middleware.Cors())
+
+	// 获取并设置public api router 和 auth api router 的prefix
 	authApiPrefix := viper.GetString("app.authApiPrefix")
 	publicApiPrefix := viper.GetString("app.publicApiPrefix")
 
