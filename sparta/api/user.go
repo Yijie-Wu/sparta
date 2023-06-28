@@ -1,7 +1,6 @@
 package api
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"sparta/service"
@@ -72,7 +71,7 @@ func (u UserAPI) Login(ctx *gin.Context) {
 // @Param name formData string true "用户名"
 // @Param email formData string true "邮箱地址"
 // @Param password formData string true "密码"
-// @Param file formData file true "头像"
+// // @Param file formData file true "头像"
 // @Success 201 {string} string "添加成功"
 // @Failure 401 {string} string "没有登陆"
 // @Failure 403 {string} string "权限不足"
@@ -85,10 +84,10 @@ func (u UserAPI) AddUser(ctx *gin.Context) {
 		return
 	}
 
-	file, _ := ctx.FormFile("file")
-	filePath := fmt.Sprintf("./upload/%s", file.Filename)
-	_ = ctx.SaveUploadedFile(file, filePath)
-	iUserDTO.Avatar = filePath
+	//file, _ := ctx.FormFile("file")
+	//filePath := fmt.Sprintf("./upload/%s", file.Filename)
+	//_ = ctx.SaveUploadedFile(file, filePath)
+	//iUserDTO.Avatar = filePath
 
 	if err := u.Service.AddUser(&iUserDTO); err != nil {
 		u.ServerFail(ResponseJson{

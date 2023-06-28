@@ -83,11 +83,6 @@ paths:
         name: password
         required: true
         type: string
-      - description: 头像
-        in: formData
-        name: file
-        required: true
-        type: file
       responses:
         "201":
           description: 添加成功

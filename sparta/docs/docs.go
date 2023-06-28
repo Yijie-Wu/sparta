@@ -134,13 +134,6 @@ const docTemplate = `{
                         "name": "password",
                         "in": "formData",
                         "required": true
-                    },
-                    {
-                        "type": "file",
-                        "description": "头像",
-                        "name": "file",
-                        "in": "formData",
-                        "required": true
                     }
                 ],
                 "responses": {
