@@ -31,7 +31,7 @@ Username = ""
 Password = ""
 
 [jwt]
-TokenExpire = 30
+TokenExpire = 3
 SigningKey = "oss"
 
 [ansible]

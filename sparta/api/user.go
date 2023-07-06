@@ -46,10 +46,6 @@ func (u UserAPI) Login(ctx *gin.Context) {
 
 	iUser, token, err := u.Service.Login(iUserLoginDTO)
 
-	if err == nil {
-		err = service.SetLoginUserTokenToRedis(iUser.ID, token)
-	}
-
 	if err != nil {
 		u.ClientFail(ResponseJson{
 			Status: http.StatusUnauthorized,

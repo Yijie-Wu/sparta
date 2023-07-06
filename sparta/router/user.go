@@ -8,13 +8,7 @@ import (
 func InitUserRoutes() {
 	RegisterRoute(func(rgPublic, rgAuth *gin.RouterGroup) {
 		userAPI := api.NewUserAPI()
-		rgPublicUser := rgPublic.Group("user").Use(func() gin.HandlerFunc {
-			return func(ctx *gin.Context) {
-				//ctx.JSON(http.StatusOK, gin.H{
-				//	"msg": "login middleware",
-				//})
-			}
-		}())
+		rgPublicUser := rgPublic.Group("user")
 
 		{
 			rgPublicUser.POST("/login", userAPI.Login)

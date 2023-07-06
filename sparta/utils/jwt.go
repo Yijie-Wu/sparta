@@ -12,15 +12,15 @@ var (
 )
 
 type JwtCustomClaims struct {
-	ID uint
-	NT string
+	ID   uint
+	Name string
 	jwt.RegisteredClaims
 }
 
-func GenerateToken(id uint, nt string) (string, error) {
+func GenerateToken(id uint, name string) (string, error) {
 	jwtCustomClaims := JwtCustomClaims{
-		ID: id,
-		NT: nt,
+		ID:   id,
+		Name: name,
 		RegisteredClaims: jwt.RegisteredClaims{
 			Subject:   "Token",
 			IssuedAt:  jwt.NewNumericDate(time.Now()),
