@@ -16,11 +16,11 @@
           <el-dropdown-menu>
             <el-dropdown-item><el-icon><Pointer /></el-icon><router-link to="/admin/applies">Applies Manager</router-link></el-dropdown-item>
             <el-dropdown-item><el-icon><User /></el-icon><router-link to="/admin/users">Users Manager</router-link></el-dropdown-item>
-            <el-dropdown-item><el-icon><Operation /></el-icon>Projects Manager</el-dropdown-item>
-            <el-dropdown-item><el-icon><Tickets /></el-icon>Flows Manager</el-dropdown-item>
-            <el-dropdown-item divided><el-icon><MagicStick /></el-icon>Spider Manager</el-dropdown-item>
-            <el-dropdown-item><el-icon><Calendar /></el-icon>Schedule Manager</el-dropdown-item>
-            <el-dropdown-item divided><el-icon><Setting /></el-icon>Web Settings</el-dropdown-item>
+            <el-dropdown-item><el-icon><Operation /></el-icon><router-link to="/admin/projects">Projects Manager</router-link></el-dropdown-item>
+            <el-dropdown-item><el-icon><Tickets /></el-icon><router-link to="/admin/flows">Flows Manager</router-link></el-dropdown-item>
+            <el-dropdown-item divided><el-icon><MagicStick /></el-icon><router-link to="/admin/spiders">Spider Manager</router-link></el-dropdown-item>
+            <el-dropdown-item><el-icon><Calendar /></el-icon><router-link to="/admin/schedulers">Schedule Manager</router-link></el-dropdown-item>
+            <el-dropdown-item divided><el-icon><Setting /></el-icon><router-link to="/admin/web/settings">Web Settings</router-link></el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -42,11 +42,11 @@
             <el-avatar shape="circle" :size="30" :src="avatarUrl" />
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item><el-icon><Pointer /></el-icon>Your Apply</el-dropdown-item>
-              <el-dropdown-item><el-icon><Tickets /></el-icon>Your Flows</el-dropdown-item>
-              <el-dropdown-item><el-icon><User /></el-icon>Your Profile</el-dropdown-item>
-              <el-dropdown-item><el-icon><Notebook /></el-icon>Your Blogs</el-dropdown-item>
-              <el-dropdown-item divided><el-icon><SwitchButton /></el-icon>Login System</el-dropdown-item>
+              <el-dropdown-item><el-icon><Pointer /></el-icon><router-link to="/user/applies">Your Apply</router-link></el-dropdown-item>
+              <el-dropdown-item><el-icon><Tickets /></el-icon><router-link to="/user/flows">Your Flows</router-link></el-dropdown-item>
+              <el-dropdown-item><el-icon><User /></el-icon><router-link to="/user/profile">Your Profile</router-link></el-dropdown-item>
+              <el-dropdown-item><el-icon><Notebook /></el-icon><router-link to="/user/blogs">Your Blogs</router-link></el-dropdown-item>
+              <el-dropdown-item divided><el-icon><SwitchButton /></el-icon><router-link to="/auth/login">Login System</router-link></el-dropdown-item>
             </el-dropdown-menu>
           </template>
         </el-dropdown>
