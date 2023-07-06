@@ -38,7 +38,7 @@ func OK(ctx *gin.Context, resp ResponseJson) {
 }
 
 func ClientFail(ctx *gin.Context, resp ResponseJson) {
-	HTTPResponse(ctx, buildStatus(resp, http.StatusBadRequest), resp)
+	HTTPResponse(ctx, buildStatus(resp, resp.Status), resp)
 }
 
 func ServerFail(ctx *gin.Context, resp ResponseJson) {

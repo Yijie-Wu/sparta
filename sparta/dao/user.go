@@ -27,6 +27,12 @@ func (d *UserDao) GetUserByNameAndPassword(username, password string) model.User
 	return iUser
 }
 
+func (d *UserDao) GetUserByName(username string) (model.User, error) {
+	var iUser model.User
+	err := d.ORM.Model(&iUser).Where("name=?", username).First(&iUser).Error
+	return iUser, err
+}
+
 func (d *UserDao) AddUser(iUserAddDTO *dto.UserAddDTO) error {
 	var iUser model.User
 	iUserAddDTO.ConvertToModel(&iUser)

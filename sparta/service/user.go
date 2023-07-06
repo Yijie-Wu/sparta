@@ -3,9 +3,15 @@ package service
 import (
 	"errors"
 	"fmt"
+	"github.com/spf13/viper"
 	"sparta/dao"
+	"sparta/global"
+	"sparta/global/constants"
 	"sparta/model"
 	"sparta/service/dto"
+	"sparta/utils"
+	"strconv"
+	"time"
 )
 
 var userService *UserService
@@ -25,14 +31,26 @@ func NewUserService() *UserService {
 	return userService
 }
 
-func (u *UserService) Login(iUserDTO dto.UserLoginDTO) (model.User, error) {
-	var errResult error
+func SetLoginUserTokenToRedis(uid uint, token string) error {
+	return global.RedisClient.Set(constants.LOGIN_USER_TOKEN_REDIS_KEY+strconv.Itoa(int(uid)), token, viper.GetDuration("jwt.TokenExpire")*time.Minute)
+}
 
-	iUser := u.Dao.GetUserByNameAndPassword(iUserDTO.Name, iUserDTO.Password)
-	if iUser.ID == 0 {
-		errResult = errors.New("invalid name or password")
+func (u *UserService) Login(iUserDTO dto.UserLoginDTO) (model.User, string, error) {
+	var errResult error
+	var token string
+
+	iUser, err := u.Dao.GetUserByName(iUserDTO.Name)
+
+	if err != nil || !utils.CompareHashAndPassword(iUser.Password, iUserDTO.Password) {
+		errResult = errors.New("invalid username or password")
+	} else {
+		token, err = utils.GenerateToken(iUser.ID, iUser.Name)
+		if err != nil {
+			errResult = errors.New(fmt.Sprintf("generate token error:%s", err.Error()))
+		}
 	}
-	return iUser, errResult
+
+	return iUser, token, errResult
 }
 
 func (u *UserService) AddUser(iUserAddDTO *dto.UserAddDTO) error {

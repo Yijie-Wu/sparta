@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"sparta/service"
 	"sparta/service/dto"
-	"sparta/utils"
 )
 
 const (
@@ -45,16 +44,20 @@ func (u UserAPI) Login(ctx *gin.Context) {
 		return
 	}
 
-	iUser, err := u.Service.Login(iUserLoginDTO)
+	iUser, token, err := u.Service.Login(iUserLoginDTO)
+
+	if err == nil {
+		err = service.SetLoginUserTokenToRedis(iUser.ID, token)
+	}
+
 	if err != nil {
 		u.ClientFail(ResponseJson{
-			Code: LOGIN_USER_ERROR_CODE,
-			Msg:  err.Error(),
+			Status: http.StatusUnauthorized,
+			Code:   LOGIN_USER_ERROR_CODE,
+			Msg:    err.Error(),
 		})
 		return
 	}
-
-	token, _ := utils.GenerateToken(iUser.ID, iUser.NT)
 
 	u.OK(ResponseJson{
 		Data: gin.H{
