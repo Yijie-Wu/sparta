@@ -1,7 +1,8 @@
 <template>
-<h1>Home</h1>
+<Nav>Home</Nav>
 </template>
 
 <script setup>
+import Nav from "@/components/Nav.vue"
 
 </script>

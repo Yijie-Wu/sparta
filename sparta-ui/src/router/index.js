@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/Main/HomeView.vue'
+import HomeView from '../views/Main/HomeView'
 
 const routes = [
   {
@@ -10,37 +10,42 @@ const routes = [
   {
     path: '/apply',
     name: 'apply',
-    component: () => import('../views/Main/ApplyView.vue')
+    component: () => import('../views/Main/ApplyView')
   },
   {
     path: '/baseline',
     name: 'baseline',
-    component: () => import('../views/Main/BaselineView.vue')
+    component: () => import('../views/Main/BaselineView')
   },
   {
     path: '/blogs',
     name: 'blogs',
-    component: () => import('../views/Main/BlogsView.vue')
+    component: () => import('../views/Main/BlogsView')
   },
   {
     path: '/notifications',
     name: 'notifications',
-    component: () => import('../views/User/NotificationView.vue')
+    component: () => import('../views/User/NotificationView')
   },
   {
     path: '/reviews',
     name: 'reviews',
-    component: () => import('../views/Main/ReviewView.vue')
+    component: () => import('../views/Main/ReviewView')
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: () => import('../views/Admin/AdminView')
   },
   {
     path: '/admin/applies',
     name: 'admin-applies',
-    component: () => import('../views/Admin/ApplyManagerView.vue')
+    component: () => import('../views/Admin/ApplyManagerView')
   },
   {
     path: '/admin/users',
     name: 'admin-users',
-    component: () => import('../views/Admin/UserManagerView.vue')
+    component: () => import('../views/Admin/UserManagerView')
   },
   {
     path: '/admin/projects',
@@ -91,6 +96,11 @@ const routes = [
     path: '/auth/login',
     name: 'auth-login',
     component: () => import('../views/Auth/LoginView')
+  },
+  {
+    path: '/auth/register',
+    name: 'auth-register',
+    component: () => import('../views/Auth/RegisterView')
   },
 ]
 
